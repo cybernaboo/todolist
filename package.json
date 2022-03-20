@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "cypress": "^9.5.2",
+    "daemon": "^1.1.0",
+    "express": "^4.17.3",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.3"
+  }
+}
