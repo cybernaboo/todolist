@@ -21,4 +21,7 @@ Divers :
     - git config --global credential.helper cache
 
 Token : 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
+        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
+
 git remote add origin https://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@github.com/cybernaboo/exosgit.git
+git remote add origin https://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@github.com/cybernaboo/todolist.git
