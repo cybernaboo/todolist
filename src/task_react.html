@@ -1,3 +1,4 @@
+  
 <html>
   <head>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -12,11 +13,13 @@
   </head>
 
   <body>
-    <!-- la balise div va accueillir le composant React Page -->
-    <h1>REACT - Liste des tâches</h1>
     <div id="root"></div>
 
     <script type="text/babel">
+        function Titre(props) {
+          alert(JSON.stringify(props.tasks));
+          return <h1>bonjour bla bla</h1>;
+        }
       function Task(props) {
         return (
           <div>
@@ -30,8 +33,10 @@
 
       function Page(props) {
         alert("Page : " + JSON.stringify(props.tasks));
-        let taskComponents = props.tasks.map(t => 
+        let taskComponents = props.tasks.map((t) => {
+          return(
           <Task id={t.id} tache={t.tache} ech={t.echeance} />);
+        });
         return (
           <div>
             <h1>Todo list de la mort en react</h1>
@@ -42,14 +47,13 @@
       }
 
       fetch("/get-tasks")
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (dataTask) {
+        .then((res) => res.json())
+        .then((data) => {
+          // alert("Fetch : " + JSON.stringify(data));
           const domContainer = document.getElementById("root");
-          alert("Fetch : " + JSON.stringify(dataTask));
-        ReactDOM.render(<Page tasks={dataTask} />, domContainer);
-        alert("Après render");
+          // alert("domContainer : " + domContainer);
+          // ReactDOM.render(<Titre tasks={data}/>, domContainer);
+          ReactDOM.render(<Page tasks={data} />, domContainer);
         });
     </script>
   </body>
