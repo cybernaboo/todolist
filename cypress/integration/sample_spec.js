@@ -1,5 +1,9 @@
-describe('My First Test', () => {
-    it('Does not do much!', () => {
-        expect(true).to.equal(false)
-    })
-})
+const dateUtil=require('../../src/taches_utils')
+
+it('visits base url', () => {
+    cy.visit('/') 
+    cy.get('#tache').type('Faire test Cypress')
+    cy.get('#echeance').type(dateUtil.dateDay())
+    cy.get('#submit').click()
+    cy.get('#table').contains('Faire test Cypress')
+  })

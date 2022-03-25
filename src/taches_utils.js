@@ -49,22 +49,28 @@ function HTMLTaskList(results) {
     return content_html
 }
 
+function todayDate(){
+  var date = new Date();
+  var day = date.getDate();
+  var month = date.getMonth() + 1;
+  var year = date.getFullYear();
+
+  if (month < 10) month = "0" + month;
+  if (day < 10) day = "0" + day;
+  let currentDate = year + "-" + month + "-" + day;
+  return currentDate;
+}
+
 function html_js() {
     let content_html = `
         <script type="text/javascript">
+       
         function SetDate() {
-          var date = new Date();
-          var day = date.getDate();
-          var month = date.getMonth() + 1;
-          var year = date.getFullYear();
-
-          if (month < 10) month = "0" + month;
-          if (day < 10) day = "0" + day;
-          var today = year + "-" + month + "-" + day;
-
-          document.getElementById("echeance").value = today;
-          document.getElementById("echeance").setAttribute("min", today);
+          currentDate = '${todayDate()}';
+          document.getElementById("echeance").value = currentDate;
+          document.getElementById("echeance").setAttribute("min", currentDate);
         }
+
         buttontasks=document.getElementById("buttontasks");
         buttontasks.onclick = function() {
           fetch("http://localhost:3000/get-tasks")
@@ -226,4 +232,5 @@ module.exports = {
     closetask: closetask,
     ShowTasks: ShowTasks,
     HTMLTaskList: HTMLTaskList,
+    todayDate: todayDate,
 };
